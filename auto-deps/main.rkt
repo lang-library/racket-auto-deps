@@ -1,7 +1,7 @@
 #lang racket
 
 (require racket/system)
-(require racket-sprintf)
+(require sprintf)
 
 ;; ---------------------------------------------------------------------------------------------------
 ;; auto-deps reader
