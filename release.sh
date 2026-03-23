@@ -17,5 +17,6 @@ git push origin "$tag"
 git push
 git remote -v
 git log | head -n 1
+git log | head -n 1|clip.exe
 git-tag-list
 firefox https://pkgs.racket-lang.org/package/auto-deps
