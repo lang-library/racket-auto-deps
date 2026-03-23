@@ -1,6 +1,6 @@
 #lang info
 (define collection 'multi)
 (define deps
-  '("base"))
+  '("base" "sprintf"))
 (define build-deps
   '())

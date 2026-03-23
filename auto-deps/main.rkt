@@ -1,4 +1,7 @@
-#lang racket/base
+#lang racket
+
+(require racket/system)
+(require racket-sprintf)
 
 ;; ---------------------------------------------------------------------------------------------------
 ;; auto-deps reader
@@ -79,22 +82,6 @@
       pkg-dir))
 
   (define (perform-installation! #:name name #:deps deps)
-    (parameterize ([current-pkg-scope (default-pkg-scope)])
-      (with-pkg-lock
-       (let* ([tmp-pkg-dir (create-tmp-pkg name #:deps deps)]
-              [install-result (pkg-install (list (pkg-desc (path->string tmp-pkg-dir)
-                                                           'link name #f #t))
-                                           #:dep-behavior 'search-auto)]
-              [remove-result (pkg-remove (list name) #:quiet? #t)]
-              [collections (match* (install-result remove-result)
-                             [(#f #f) #f]
-                             [({or {and 'skip {app (const '()) collects-a}} collects-a}
-                               {or {and 'skip {app (const '()) collects-b}} collects-b})
-                              (filter
-                               (λ (x) (not (equal? x (list name))))
-                               (append (map (λ (x) (if (list? x) x (list x))) collects-a)
-                                       (map (λ (x) (if (list? x) x (list x))) collects-b)))])])
-         (unless (null? collections)
-           (setup #:fail-fast? #t
-                  #:collections collections)
-           (newline)))))))
+    (system (sprintf "raco pkg install -u --auto --skip-installed %s" name))
+    )
+  )
