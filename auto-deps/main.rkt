@@ -83,6 +83,8 @@
       pkg-dir))
 
   (define (perform-installation! #:name name #:deps deps)
-    (system (format "raco pkg install -u --auto --skip-installed ~a" name))
+    (for ([dep (in-list deps)])
+      (system (format "raco pkg install -u --auto --skip-installed ~a" dep))
+      )
     )
   )
