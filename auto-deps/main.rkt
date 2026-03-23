@@ -10,12 +10,14 @@
                        [auto-deps:read-syntax read-syntax]
                        [racket:get-info get-info]))
 
-  (require racket/require
-           (multi-in racket [file format function match path string])
-           (multi-in syntax [modread parse readerr])
-           (prefix-in racket: (submod racket reader))
-           pkg/lib
-           setup/setup)
+  (require
+   racket/require
+   racket/system
+   (multi-in racket [file format function match path string])
+   (multi-in syntax [modread parse readerr])
+   (prefix-in racket: (submod racket reader))
+   pkg/lib
+   setup/setup)
 
   (define (auto-deps:read in)
     (map syntax->datum (auto-deps:read-syntax #f in)))
