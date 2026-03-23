@@ -1,7 +1,6 @@
 #lang racket
 
 (require racket/system)
-(require sprintf)
 
 ;; ---------------------------------------------------------------------------------------------------
 ;; auto-deps reader
@@ -82,6 +81,6 @@
       pkg-dir))
 
   (define (perform-installation! #:name name #:deps deps)
-    (system (sprintf "raco pkg install -u --auto --skip-installed %s" name))
+    (system (format "raco pkg install -u --auto --skip-installed ~a" name))
     )
   )
