@@ -8,7 +8,7 @@ version="${ts}"
 
 sed -i -e "s/<Version>.*<\/Version>/<Version>${version}<\/Version>/g" version.xml
 
-tag="v$version"
+tag="racket-auto-deps-v$version"
 cd $cwd
 git add .
 git commit -m"$tag"
