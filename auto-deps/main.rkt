@@ -84,6 +84,7 @@
 
   (define (perform-installation! #:name name #:deps deps)
     (for ([dep (in-list deps)])
+      (displayln (string-append "Installing "  dep))
       (system (format "raco pkg install -u --auto --skip-installed ~a" dep))
       )
     )
